@@ -5,7 +5,6 @@ import {
   Typography,
   Stack,
   MenuItem,
-  Avatar,
   IconButton,
   Popover,
 } from "@mui/material";
@@ -24,6 +23,11 @@ const MENU_OPTIONS = [
     label: "Profile",
     icon: "eva:person-fill",
     link: "/dashboard/view",
+  },
+  {
+    label: "Update Profile",
+    icon: "eva:edit",
+    link: "/dashboard/edit",
   },
   {
     label: "Settings",

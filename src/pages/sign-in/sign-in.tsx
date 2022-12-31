@@ -1,11 +1,9 @@
-import { Link, Container, Typography, Stack } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Helmet } from "react-helmet-async";
 import { LoginForm } from "../../components/auth/login";
 import { AppName } from "../../constants/app";
-import { Link as ReactRouterLink } from "react-router-dom";
-import { ApplicationRoutes } from "../../routes/constants";
 
 const StyledContent = styled("div")(({ theme }) => ({
   maxWidth: 480,

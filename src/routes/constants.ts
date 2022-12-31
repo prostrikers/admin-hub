@@ -3,4 +3,5 @@ export enum ApplicationRoutes {
   DASHBOARD = "/",
   DASHBOARD_USER_PROFILE = "/dashboard/view",
   DASHBOARD_EDIT_PROFILE = "/dashboard/edit",
+  DASHBOARD_BOOKINGS_PAGE = "/bookings",
 }

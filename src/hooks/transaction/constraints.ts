@@ -1,6 +1,6 @@
 const API = {
   CURRENT_USER_TRANSACTIONS: {
-    path: "transaction/me",
+    path: "transaction/all",
     method: "GET",
   },
 };
