@@ -10,10 +10,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Iconify from "../Iconify";
 import { useSignInMutation } from "../../hooks/auth/sign-in";
-import { setAuthToken, setRefreshToken } from "../../helpers/token";
+import {
+  clearAuthToken,
+  setAuthToken,
+  setRefreshToken,
+} from "../../helpers/token";
 import { request } from "../../utils/request";
 import API from "../../hooks/users/constraints";
 import { useUserStore } from "../../store/createUserSlice";
+import { UserRoles } from "../../enum/role.enum";
+import { toast } from "react-hot-toast";
 
 export const LoginForm = () => {
   const signInMutation = useSignInMutation();
@@ -32,6 +38,7 @@ export const LoginForm = () => {
       name: userName,
       password: password,
     });
+
     setAuthToken(data.data.idToken.jwtToken);
     setRefreshToken(data.data.refreshToken.token);
 
@@ -44,7 +51,16 @@ export const LoginForm = () => {
       true
     );
 
+    if (currentUser.data.role != UserRoles.SuperAdmin) {
+      toast.error("You are not authorized to access this page");
+      setIsLoading(false);
+      clearAuthToken();
+
+      return;
+    }
+
     setUser(currentUser.data);
+
     navigate("/");
     setIsLoading(false);
   };
