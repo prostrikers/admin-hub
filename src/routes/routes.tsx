@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import ProfileLayout from "../layouts/profileLayout";
 import WithoutNavLayout from "../layouts/WithoutNav";
+import { Bookings } from "../pages/bookings";
 import { EditProfilePage, ProfilePage, ViewProfile } from "../pages/profile";
 import { SignInPage } from "../pages/sign-in";
 import { ApplicationRoutes } from "./constants";
@@ -27,6 +28,15 @@ export function Router() {
             </ProfileLayout>
           ),
         },
+        {
+          path: ApplicationRoutes.DASHBOARD_BOOKINGS_PAGE,
+          element: (
+            <ProfileLayout>
+              <Bookings />
+            </ProfileLayout>
+          ),
+        },
+
         {
           path: ApplicationRoutes.DASHBOARD_USER_PROFILE,
           element: (

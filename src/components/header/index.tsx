@@ -14,6 +14,7 @@ import Iconify from "../Iconify";
 import { bgBlur } from "../../utils/styles";
 import { useUserStore } from "../../store/createUserSlice";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const HEADER_MOBILE = 64;
 const HEADER_DESKTOP = 92;
@@ -53,6 +54,20 @@ const NavItems = [
 export default function Header({ onOpenNav }: { onOpenNav: any }) {
   const { user } = useUserStore();
 
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
   //@ts-ignore
   const StyledRoot = styled(AppBar)(({ theme }: { theme: DefaultTheme }) => ({
     ...bgBlur({ color: theme.palette.background.default }),
@@ -86,17 +101,21 @@ export default function Header({ onOpenNav }: { onOpenNav: any }) {
             <img src="/logo.png" />
           </Box>
 
-          {NavItems.map((item) => {
-            return (
-              <Typography
-                style={{ color: "#333333" }}
-                component={Link}
-                to={item.link}
-              >
-                {item.name}
-              </Typography>
-            );
-          })}
+          {isMobile ? null : (
+            <>
+              {NavItems.map((item) => {
+                return (
+                  <Typography
+                    style={{ color: "#333333" }}
+                    component={Link}
+                    to={item.link}
+                  >
+                    {item.name}
+                  </Typography>
+                );
+              })}
+            </>
+          )}
         </Stack>
 
         <Box sx={{ flexGrow: 1 }} />
