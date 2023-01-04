@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 
-export const getAuthToken = (): string | null => Cookies.get("session") ?? null;
+export const getAuthToken = (): string | null =>
+  Cookies.get("admin_session") ?? null;
 export const getRefreshToken = (): string | null =>
   Cookies.get("admin_refreshToken") ?? null;
 
